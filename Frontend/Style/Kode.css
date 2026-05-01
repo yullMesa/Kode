@@ -21,7 +21,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 600px; /* Ajusta qué tan pegados quieres los botones al título */
+  gap: 550px; /* Ajusta qué tan pegados quieres los botones al título */
   width: 100%;
   max-width: 500px; /* Al reducir esto, todo se junta más al centro */
 }
@@ -103,3 +103,93 @@ body {
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
+/* El fondo oscuro que cubre toda la pantalla */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Oscurece el fondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 2000;
+}
+
+/* Cuando el modal está activo */
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* La caja blanca de la publicación */
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+/* Estilos internos rápidos */
+.modal-content h3 { margin-top: 0; letter-spacing: -1px; }
+textarea {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    resize: none;
+    margin: 15px 0;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-primary { background: #333; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+.btn-secondary { background: #eee; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left; /* Alinea los labels a la izquierda */
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="file"] {
+    width: 100%;
+    font-size: 0.8rem;
+}
+
+/* Estilo para el selector de color */
+.form-group input[type="color"] {
+    width: 100%;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+
+.modal-content textarea {
+    height: 100px; /* Un poco más pequeña para que quepa todo */
+}
