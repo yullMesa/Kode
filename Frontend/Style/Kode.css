@@ -1,0 +1,105 @@
+/* Aplicado al fondo general de la página */
+body {
+  margin: 0;
+  /* Un blanco moderno, algo "cremoso" o "hueso" muy sutil */
+  background-color: #fcfcfc; 
+  font-family: sans-serif;
+}
+
+/* El encabezado con el grisáceo que pediste */
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* Gris suave y profesional */
+  background-color: #f2f2f2; 
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 600px; /* Ajusta qué tan pegados quieres los botones al título */
+  width: 100%;
+  max-width: 500px; /* Al reducir esto, todo se junta más al centro */
+}
+
+.title {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 900;
+  /* El truco para el spacing más junto */
+  letter-spacing: -2px; 
+  color: #1a1a1a;
+  text-transform: capitalize;
+}
+
+.btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-weight: 600;
+}
+
+.btn:hover {
+  color: #000;
+  transform: scale(0.95);
+}
+
+.Spam {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  
+  /* IMPORTANTE: Necesitas darle altura para que el "centro" exista */
+  height: 70vh;            /* 50% de la altura de la pantalla, ajústalo a tu gusto */
+  
+  text-align: center;
+  font-size: 80px;
+}
+
+/*Aqui empieza la creacion estetia de las hitorias*/
+.upload-container {
+  /* Esto lo saca del flujo normal y lo clava en la pantalla */
+  position: fixed; 
+  
+  /* Posición exacta en la esquina (como el icono de WhatsApp) */
+  bottom: 30px; 
+  right: 30px; 
+  
+  /* Ya no necesitamos ni width 100% ni height 60vh */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Alinea los elementos a la derecha del contenedor */
+  gap: 10px;
+  
+  /* Asegura que esté por encima de cualquier otra cosa */
+  z-index: 999; 
+}
+
+.btn-upload {
+  background-color: #f2f2f2;
+  color: #555;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px; /* Bordes bien redondeados para que sea más orgánico */
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Sombra para que "flote" */
+  transition: all 0.3s ease;
+}
+
+.btn-upload:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-5px); /* Se eleva un poquito al pasar el mouse */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
