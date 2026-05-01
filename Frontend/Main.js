@@ -38,25 +38,47 @@ btnHistorias.addEventListener('click', () => {
                 <button id="publish-btn" class="btn-primary">Publicar</button>
             </div>
         </div>
+
+           <!-- 3. La Grilla de Historias (El feed que va al fondo) -->
+        <div class="feed-grid">
+            <div class="story-card" style="background-color: #ffe0e0;"></div>
+            <div class="story-card" style="background-color: #e0f2ff;"></div>
+            <div class="story-card" style="background-color: #e0ffe0;"></div>
+            <!-- Aquí es donde el backend irá metiendo las tarjetas nuevas -->
+        </div> 
     </div>
 `;
 });
 
 // Escuchamos los clics en todo el main
-mainContent.addEventListener('click', (e) => {
+mainContent.addEventListener('click', (e) => { // La 'e' nace aquí
     
-    // Si el elemento que clickearon es el de abrir el modal
-    if (e.target.id === 'open-modal') {
+    // Abrir
+    if (e.target.closest('#open-modal')) {
         document.getElementById('modal-container').classList.add('active');
     }
 
-    // Si el elemento es el de cerrar el modal
+    // Cerrar
     if (e.target.id === 'close-modal') {
         document.getElementById('modal-container').classList.remove('active');
     }
-    
-    // Cerrar si hacen clic en el fondo oscuro (opcional, muy pro)
-    if (e.target.classList.contains('modal-overlay')) {
-        e.target.classList.remove('active');
+
+    // --- AQUÍ DEBE IR EL DE PUBLICAR PARA QUE RECONOZCA LA 'e' ---
+    if (e.target.id === 'publish-btn') {
+        const formData = new FormData();
+        formData.append('nombre_img', document.getElementById('char-name-img').files[0]);
+        formData.append('bg_color', document.getElementById('bg-color').value);
+        formData.append('personaje_img', document.getElementById('char-img').files[0]);
+        formData.append('historia', document.getElementById('story-text').value);
+
+        fetch('http://localhost:8000/publicar-historia', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log('Éxito:', data);
+            document.getElementById('modal-container').classList.remove('active');
+        });
     }
-});
+}); // Aquí termina la 'e'});

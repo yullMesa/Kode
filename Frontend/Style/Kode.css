@@ -105,19 +105,22 @@ body {
 
 /* El fondo oscuro que cubre toda la pantalla */
 .modal-overlay {
-    position: fixed;
+    position: fixed; /* O absolute, si prefieres que se mueva con el feed */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Oscurece el fondo */
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7); /* Un poco más oscuro para que resalte */
+    z-index: 9999; /* Asegúrate que sea el número más alto de tu CSS */
+    
+    /* Centrado con Flexbox (Esto debería funcionar si el ancho es 100%) */
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;
+    
     visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 2000;
+    opacity: 0;
+    transition: 0.3s;
 }
 
 /* Cuando el modal está activo */
@@ -128,14 +131,17 @@ body {
 
 /* La caja blanca de la publicación */
 .modal-content {
+    position: absolute; /* Aquí aplicamos lo que querías */
+    top: 35%;
+    left: 40%;
+    transform: translate(-50%, -50%); /* Este es el secreto del centrado real */
+    
     background: white;
     padding: 30px;
     border-radius: 15px;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    transform: translateY(-20px);
-    transition: transform 0.3s ease;
+    width: 450px;
+    max-width: 90%;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
 }
 
 .modal-overlay.active .modal-content {
@@ -192,4 +198,34 @@ textarea {
 
 .modal-content textarea {
     height: 100px; /* Un poco más pequeña para que quepa todo */
+}
+
+
+.feed-grid {
+    display: grid;
+    /* Crea 3 columnas de igual tamaño */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; /* El espacio entre tarjetas */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* Centra la grilla en la pantalla */
+}
+
+/* La tarjeta individual */
+.story-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden; /* Corta lo que se salga */
+    aspect-ratio: 1 / 1.2; /* Mantiene una proporción similar a Instagram */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsivo: Si la pantalla es pequeña, ponemos 1 o 2 columnas */
+@media (max-width: 768px) {
+    .feed-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+    .feed-grid { grid-template-columns: 1fr; }
 }
