@@ -56,3 +56,29 @@ body{
   text-align: center;
   font-size: 80px;
 }
+
+
+/*Aqui se empieza a agregar los estilos del element main principalmente las historias */
+.capsula-historias{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 20px;
+}
+
+.btn-historias{
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    
+}
+
+.btn-historias:active{
+    transform: translateY(-6px);
+}
+
+/*Ventana emergente */
