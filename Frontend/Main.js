@@ -80,7 +80,56 @@ botonHistorias.onclick = (e) => {
         }
     };
 
+    cargarFeed()
+
 }; // <--- Esta llave cierra el primer clic. TODO debe estar antes de esta llave.
+
+
+async function cargarFeed() {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/historias');
+        const historias = await response.json();
+
+        let feedDiv = document.getElementById('feed-dinamico');
+        if (!feedDiv) {
+            feedDiv = document.createElement('div');
+            feedDiv.id = 'feed-dinamico';
+            feedDiv.className = 'feed-container';
+            contenedor.appendChild(feedDiv);
+        }
+
+        feedDiv.innerHTML = '';
+
+        historias.reverse().forEach(post => {
+            const btn = document.createElement('button');
+            btn.className = 'post-btn';
+            
+            // 1. Creamos la imagen manualmente (como ya tienes en tu captura)
+            const img = document.createElement('img');
+            img.src = `http://127.0.0.1:8000/ver-foto/${post.img}`;
+            img.crossOrigin = "anonymous";
+            img.alt = "Post";
+
+            // 2. IMPORTANTE: Estos estilos obligan a la imagen a "rellenar" el cuadro
+            // ignorando esos bordes invisibles que mencionaste.
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover'; 
+            img.style.display = 'block';
+
+            // 3. Metemos la imagen dentro del botón
+            btn.appendChild(img);
+
+            btn.onclick = () => {
+                console.log("Historia ID:", post.id);
+            };
+
+            feedDiv.appendChild(btn);
+        });
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
 
     
 

@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "img": "FRAU-TOFFEA.png",
+        "txt_ref": "FRAU-TOFFEA.txt"
+    },
+    {
+        "id": 2,
+        "img": "Mary-Celeste.png",
+        "txt_ref": "Mary-Celeste.txt"
+    },
+    {
+        "id": 3,
+        "img": "Bosque-suicida.png",
+        "txt_ref": "Bosque-suicida.txt"
+    },
+    {
+        "id": 4,
+        "img": "pueblo-sumergido.png",
+        "txt_ref": "pueblo-sumergido.txt"
+    }
+]

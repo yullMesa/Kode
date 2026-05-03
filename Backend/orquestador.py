@@ -2,6 +2,7 @@ import os
 import json
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
@@ -11,6 +12,7 @@ UPLOAD_PATH = os.path.join(BASE_DIR, "uploads")
 IMG_DIR = os.path.join(UPLOAD_PATH, "imagenes")
 TEXT_DIR = os.path.join(UPLOAD_PATH, "textos")
 JSON_FILE = os.path.join(UPLOAD_PATH, "data.json")
+app.mount("/ver-foto", StaticFiles(directory=IMG_DIR), name="imagenes")
 
 
 app.add_middleware(
@@ -67,3 +69,11 @@ async def upload_story(file: UploadFile = File(...), text: str = Form(...)):
     
     except Exception as e:
         return {"status": "error", "detail": str(e)}
+    
+
+@app.get("/historias")
+async def get_stories():
+    if os.path.exists(JSON_FILE):
+        with open(JSON_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return []

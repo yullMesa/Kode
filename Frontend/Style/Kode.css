@@ -215,3 +215,83 @@ body{
 .btn-secundario:hover {
     background: #d0d0d0;
 }
+
+
+/*Feed container el que se muestra las tarjetas*/
+
+/* Contenedor principal del feed */
+.feed-container {
+    display: grid;
+    /* Esto crea 3 columnas fijas de 300px cada una */
+    grid-template-columns: repeat(3, 300px); 
+    gap: 20px;
+    padding: 20px;
+    justify-content: center; /* Centra las 3 columnas en la pantalla */
+    margin: 40px auto;
+}
+
+.capsula-historias {
+    text-align: center;
+    padding: 20px 0;
+    /* Esto asegura que el botón de subir siempre esté visible arriba */
+}
+
+/* Cada foto individual como botón */
+.post-btn {
+    width: 300px !important; /* El ancho se queda fijo para mantener el orden */
+    height: auto !important; /* ¡ESTO ES LA CLAVE! El alto crece según la foto */
+    min-height: 200px; 
+    padding: 0 !important;
+    border: none;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    display: block;
+}
+
+
+.post-btn:hover {
+    transform: translateY(-10px); /* La tarjeta sube un poco */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.post-btn img {
+    width: 100% !important;
+    height: auto !important; /* La imagen dicta su propia altura */
+    display: block;
+    object-fit: contain !important; /* Asegura que se vea TODA la imagen */
+}
+
+
+
+/* Efecto de Zoom al pasar el mouse */
+.post-btn:hover img {
+    filter: brightness(0.6);
+    transform: scale(0.95);
+}
+/* Añadir un "overlay" o texto que aparezca al hacer hover (opcional pero muy pro) */
+.post-btn::after {
+    content: "Leer historia";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Fondo oscurito */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.post-btn:hover::after {
+    opacity: 1; /* El texto aparece suavemente */
+}
+
+/* Efecto de "Click" (cuando hundes el botón) */
+.post-btn:active {
+    transform: scale(0.95); /* El botón se encoge un poquito al presionarlo */
+}
