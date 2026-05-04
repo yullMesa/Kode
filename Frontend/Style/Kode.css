@@ -295,3 +295,37 @@ body{
 .post-btn:active {
     transform: scale(0.95); /* El botón se encoge un poquito al presionarlo */
 }
+
+/*---------------------ventana emergente--------------------------------------------*/
+
+/* Este es el cuadro blanco que contiene la imagen y el texto */
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    
+    /* LIMITACIÓN DE ALTURA */
+    max-height: 85vh; /* No permite que sea más alto que el 85% de la pantalla */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Este es el div que envuelve el texto (el que creamos en el JS) */
+.cuerpo-historia {
+    overflow-y: auto; /* Activa el scroll vertical si el texto es largo */
+    margin: 15px 0;
+    padding-right: 10px; /* Espacio para que el scroll no tape el texto */
+    flex-grow: 1; /* Hace que este div use el espacio disponible */
+}
+
+/* Personaliza la barra de scroll para que no se vea fea */
+.cuerpo-historia::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cuerpo-historia::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
