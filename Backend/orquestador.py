@@ -77,3 +77,13 @@ async def get_stories():
         with open(JSON_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     return []
+
+
+@app.get("/leer-texto/{filename}")
+async def leer_texto(filename: str):
+    txt_path = os.path.join(TEXT_DIR, filename)
+    if os.path.exists(txt_path):
+        with open(txt_path, "r", encoding="utf-8") as f:
+            contenido = f.read()
+        return {"texto": contenido}
+    return {"error": "Archivo no encontrado"}, 404

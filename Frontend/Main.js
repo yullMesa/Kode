@@ -1,4 +1,5 @@
 
+let synth = window.speechSynthesis;
 
 const contenedor=document.querySelector('main')
 const botonHistorias = document.getElementById('btn-historias')
@@ -122,6 +123,7 @@ async function cargarFeed() {
 
             btn.onclick = () => {
                 console.log("Historia ID:", post.id);
+                verHistoriaCompleta(post);
             };
 
             feedDiv.appendChild(btn);
@@ -132,4 +134,50 @@ async function cargarFeed() {
 }
 
     
+// Agrega esta función para manejar la apertura de la historia
+async function verHistoriaCompleta(post) {
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/leer-texto/${post.txt_ref}`);
+        const data = await response.json();
 
+        // 1. Buscamos o creamos el modal
+        let modalLectura = document.getElementById('modal-lectura');
+        if (!modalLectura) {
+            modalLectura = document.createElement('div');
+            modalLectura.id = 'modal-lectura';
+            modalLectura.className = 'modal-overlay';
+            document.body.appendChild(modalLectura);
+        }
+
+        // 2. Inyectamos el contenido (Asegúrate de que el botón tenga la clase o ID correcto)
+        modalLectura.innerHTML = `
+            <div class="modal-content">
+                <img src="http://127.0.0.1:8000/ver-foto/${post.img}" style="width:100%; border-radius:10px;">
+                <div class="cuerpo-historia">
+                    <p>${data.texto}</p>
+                </div>
+                <button id="btn-cerrar-lectura" class="btn-secundario">Cerrar</button>
+            </div>
+        `;
+
+        // 3. Mostramos el modal ANTES de buscar elementos adentro
+        modalLectura.style.display = 'flex';
+
+        // 4. Lógica de la voz
+        synth.cancel(); 
+        const lectura = new SpeechSynthesisUtterance(data.texto);
+        lectura.lang = 'es-ES';
+        lectura.rate = 0.9;
+        synth.speak(lectura);
+
+        // 5. Ahora que el botón EXISTE en el HTML, le asignamos el evento
+        const btnCerrar = document.getElementById('btn-cerrar-lectura');
+        btnCerrar.onclick = () => {
+            synth.cancel(); // Detiene la voz
+            modalLectura.style.display = 'none';
+        };
+
+    } catch (err) {
+        console.error("Error al cargar la historia:", err);
+    }
+}
