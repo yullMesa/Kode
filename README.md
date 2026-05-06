@@ -32,3 +32,11 @@ Modificación en Tiempo Real: Capacidad de alterar la historia "base" y observar
 Migrar el procesamiento de datos a una base de datos SQL para mayor escalabilidad.
 
 Implementar visualizaciones más complejas (gráficas de calor o nubes de palabras dinámicas).
+
+
+⚖️ Licencia
+Este proyecto está protegido bajo la licencia GNU General Public License v3.0.
+
+Puedes usar y modificar el código siempre que se mantenga el reconocimiento del autor original y cualquier derivado se mantenga como código abierto.
+
+Los activos visuales fueron generados con asistencia de IA para fines de prototipado y diseño conceptual.
