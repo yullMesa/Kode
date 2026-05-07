@@ -1,8 +1,17 @@
+import { renderEstadisticas } from './Estadisticas.js';
+
 
 let synth = window.speechSynthesis;
 
 const contenedor=document.querySelector('main')
 const botonHistorias = document.getElementById('btn-historias')
+const botonEstadisticas = document.getElementById('btn-estadisticas'); // Asegúrate de que el ID coincida
+
+
+botonEstadisticas.onclick = () => {
+    const contenedor = document.querySelector('main');
+    renderEstadisticas(contenedor);
+};
 
 
 botonHistorias.onclick = (e) => {
