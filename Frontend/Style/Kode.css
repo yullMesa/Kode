@@ -333,3 +333,82 @@ body{
 
 /*------------------------------------Boton estadisticas--------------------------------------------------*/
 
+/* Contenedor principal */
+.dashboard-wrapper {
+  background-color: #0f0f0f; /* Negro profundo */
+  min-height: 100vh;
+  padding: 30px;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif; /* O la que uses en Kode */
+}
+
+/* Barra de Filtros sutil */
+.dashboard-header {
+  position: sticky;
+  top: 0;
+  background: rgba(15, 15, 15, 0.95); /* Semi-transparente para scroll */
+  padding: 15px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #2d2d2d; /* Línea divisoria fina */
+  z-index: 10;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#category-filter {
+  background: #1a1a1a;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 8px 15px;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Grilla */
+/* Grilla forzada a 3 columnas */
+.stats-grid {
+  display: grid;
+  /* Esto obliga a tener 3 columnas de igual tamaño (1 fracción cada una) */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 25px; /* Espacio entre los cuadros */
+  width: 100%;
+}
+
+/* Las tarjetas ahora se acomodarán solas en filas de 3 */
+.card {
+  background: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 12px;
+  padding: 20px;
+  min-height: 300px; /* Altura mínima para que no se vean aplastadas */
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  border-color: #444; /* Resalta un poco al pasar el mouse */
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  font-size: 0.9rem;
+  color: #888; /* Texto secundario para títulos */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+/* Ajuste para tablets/celulares */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: 1fr; /* 1 columna */
+  }
+}
+
