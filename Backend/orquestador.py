@@ -58,7 +58,8 @@ async def upload_story(file: UploadFile = File(...), text: str = Form(...)):
         nuevo_item = {
             "id": len(datos) + 1,
             "img": nombre_limpio,
-            "txt_ref": txt_filename
+            "txt_ref": txt_filename,
+            "revisado": False
         }
         datos.append(nuevo_item)
 
@@ -75,7 +76,13 @@ async def upload_story(file: UploadFile = File(...), text: str = Form(...)):
 async def get_stories():
     if os.path.exists(JSON_FILE):
         with open(JSON_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
+            try:
+                datos = json.load(f)
+                # Solo enviamos las historias donde revisado == True
+                historias_publicas = [h for h in datos if h.get("revisado") == True]
+                return historias_publicas
+            except:
+                return []
     return []
 
 

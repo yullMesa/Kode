@@ -2,21 +2,25 @@
     {
         "id": 1,
         "img": "FRAU-TOFFEA.png",
-        "txt_ref": "FRAU-TOFFEA.txt"
+        "txt_ref": "FRAU-TOFFEA.txt",
+        "revisado": true
     },
     {
         "id": 2,
         "img": "Mary-Celeste.png",
-        "txt_ref": "Mary-Celeste.txt"
+        "txt_ref": "Mary-Celeste.txt",
+        "revisado": true
     },
     {
         "id": 3,
         "img": "Bosque-suicida.png",
-        "txt_ref": "Bosque-suicida.txt"
+        "txt_ref": "Bosque-suicida.txt",
+        "revisado": true
     },
     {
         "id": 4,
         "img": "pueblo-sumergido.png",
-        "txt_ref": "pueblo-sumergido.txt"
+        "txt_ref": "pueblo-sumergido.txt",
+        "revisado": true
     }
 ]

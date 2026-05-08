@@ -340,6 +340,7 @@ body{
   padding: 30px;
   color: #ffffff;
   font-family: 'Inter', sans-serif; /* O la que uses en Kode */
+  margin: 0 auto;
 }
 
 /* Barra de Filtros sutil */
