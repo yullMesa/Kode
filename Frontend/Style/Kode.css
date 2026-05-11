@@ -161,7 +161,7 @@ body{
 
 /* 5. Estilo para el área de texto (Textarea) */
 #texto-historia {
-    width: 100%;
+    width: 95%;
     height: 150px;
     padding: 15px;
     border: 1px solid #ddd;
