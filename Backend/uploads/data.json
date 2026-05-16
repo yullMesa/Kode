@@ -40,5 +40,11 @@
         "img": "filtrado.png",
         "txt_ref": "filtrado.txt",
         "revisado": true
+    },
+    {
+        "id": 8,
+        "img": "Nexo.png",
+        "txt_ref": "Nexo.txt",
+        "revisado": true
     }
 ]
