@@ -1,0 +1,14 @@
+# Ignorar la base de datos local con datos de prueba
+kode.db
+
+# Ignorar las carpetas de caché de Python
+__pycache__/
+*.pyc
+
+# Ignorar entornos virtuales si creaste uno
+venv/
+.venv/
+
+# Ignorar archivos ocultos del sistema o del editor
+.DS_Store
+.vscode/

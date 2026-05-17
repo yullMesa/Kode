@@ -64,6 +64,7 @@ body{
     bottom: 30px;
     right: 30px;
     padding: 20px;
+    z-index: 1000000;
 }
 
 .btn-historias{
@@ -74,6 +75,7 @@ body{
     color: #555;
     cursor: pointer;
     transition: color 0.3s ease;
+    
     
 }
 

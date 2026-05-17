@@ -1,0 +1,4 @@
+{"precio_cierre": 422.24, "volumen": 52271800, "empleados": 134785, "margen_ganancia": 3.95, "efectivo_total": 44743000064, "deuda_total": 15889999872}
+Informe Analitico de Mercado: TSLA
+El dia de hoy las acciones cerraron con un valor de 422.24 dolares en la bolsa, registrando un movimiento de 52271800 acciones negociadas.
+La entidad dispone de 44743000064 dolares en efectivo total, frente a una deuda acumulada en sus libros de 15889999872 dolares.
