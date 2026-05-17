@@ -3,6 +3,8 @@ import json
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+import sqlite3
+
 
 app = FastAPI()
 
@@ -94,3 +96,73 @@ async def leer_texto(filename: str):
             contenido = f.read()
         return {"texto": contenido}
     return {"error": "Archivo no encontrado"}, 404
+
+
+@app.get("/api/metricas-totales")
+async def get_metricas_totales():
+    try:
+        # Conectamos directo a tu DB relacional
+        # Ajusta la ruta si tu archivo python está en otra subcarpeta
+        conn = sqlite3.connect(os.path.join(BASE_DIR, "..", "kode.db"))
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        
+        # Traemos todas las historias con su estado analítico real
+        cursor.execute("SELECT id, titulo, es_buena FROM historias")
+        rows = cursor.fetchall()
+        conn.close()
+        
+        # Retornamos la lista completa de la DB sin depender de ningún JSON
+        return [dict(row) for row in rows]
+    except Exception as e:
+        return {"status": "error", "detail": str(e)}
+    
+@app.get("/api/metricas-detalle")
+async def get_metricas_detalle():
+    try:
+        conn = sqlite3.connect(os.path.join(BASE_DIR, "..", "kode.db"))
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        
+        # Traemos la información financiera para graficar
+        # Usamos COALESCE para tomar 'precio_cierre' o en su defecto el 'valor' antiguo si existe
+        cursor.execute("""
+            SELECT historia_id, 
+                   COALESCE(precio_cierre, valor) as cifra_financiera 
+            FROM metricas 
+            WHERE cifra_financiera IS NOT NULL
+        """)
+        rows = cursor.fetchall()
+        conn.close()
+        
+        return [dict(row) for row in rows]
+    except Exception as e:
+        return {"status": "error", "detail": str(e)}
+    
+
+@app.get("/api/palabras-repetidas")
+def obtener_palabras_repetidas():
+    import sqlite3
+    import os
+    
+    # Apuntamos a la DB central en la raíz
+    base_dir = os.path.dirname(__file__)
+    db_path = os.path.abspath(os.path.join(base_dir, "..", "kode.db"))
+    
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    
+    # Agrupamos por palabra, sumamos sus frecuencias y limitamos a las 10 más dominantes
+    cursor.execute('''
+        SELECT palabra, SUM(frecuencia) as total 
+        FROM analisis_palabras 
+        GROUP BY palabra 
+        ORDER BY total DESC 
+        LIMIT 10
+    ''')
+    
+    datos = cursor.fetchall()
+    conn.close()
+    
+    # Formateamos la respuesta para que el Frontend la entienda directo
+    return [{"palabra": fila[0], "frecuencia": fila[1]} for fila in datos]

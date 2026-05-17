@@ -415,3 +415,60 @@ body{
   }
 }
 
+/*-----------------haciendo que las graficas midan lo mismo*/
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 320px; /* 📐 Ajusta este valor en píxeles a tu gusto para controlar la altura uniforme */
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.total-stories-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px 20px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.total-label {
+    font-size: 0.75rem;
+    color: #888888;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+}
+
+.total-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    font-family: monospace; /* Estilo terminal analítica */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Estilos para la tarjeta de conteo total */
+.card-contador {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.contador-numero {
+    font-size: 4rem; /* Un tamaño grande y dominante */
+    font-weight: 800;
+    color: #eb5e28; /* El mismo naranja/óxido neo-gótico de tus barras */
+    text-shadow: 0 0 15px rgba(235, 94, 40, 0.3); /* Un leve aura mística */
+    margin: auto 0;
+    font-family: monospace; /* Estilo de terminal/código */
+}
